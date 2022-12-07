@@ -1,0 +1,22 @@
+.grid {
+  position: relative;
+  display: inline-block;
+  text-align: center !important;
+  background-color: #8b8b8b;
+  border-color: #373737 #fff #fff #373737;
+  border-style: solid;
+  border-width: 2px;
+  vertical-align: middle;
+}
+
+.grid:hover {
+  background-color: #dddddd;
+}
+
+.img {
+  pointer-events: none;
+  width: 32px !important;
+  height: 32px !important;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+}
