@@ -165,13 +165,11 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <script src="/src/App.tsx" type="module"></script>
     <script>
       if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker.register("/service-worker.js");
-        });
+        navigator.serviceWorker.register("/service-worker.js");
       }
     </script>
+    <script src="/src/App.tsx" type="module"></script>
   </body>
 </html>
