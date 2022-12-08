@@ -11,6 +11,7 @@
     "types": ["vite/client"],
     "noEmit": true,
     "isolatedModules": true,
-    "importsNotUsedAsValues": "error"
+    "importsNotUsedAsValues": "error",
+    "skipLibCheck": true
   }
 }
