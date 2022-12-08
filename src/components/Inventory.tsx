@@ -1,9 +1,9 @@
-import { Accessor, For } from "solid-js";
+import { For, Resource } from "solid-js";
 import type { Item } from "../types/Item";
 import ItemSlot from "./ItemSlot";
 
 interface InventoryProps {
-  items: Accessor<Item[]>;
+  items: Resource<Item[]>;
 }
 
 export default function Inventory({ items }: InventoryProps) {
