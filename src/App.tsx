@@ -3,8 +3,8 @@ import { render } from "solid-js/web";
 import CraftingGrid from "./components/CraftingGrid";
 import DraggedItem from "./components/DraggedItem";
 import Inventory from "./components/Inventory";
-import { inventory } from "./stores/inventory";
 import { setMousePosition } from "./stores/mousePosition";
+import { vanillaItems } from "./stores/vanillaItems";
 
 function App() {
   window.addEventListener("mousemove", (event) => {
@@ -16,7 +16,7 @@ function App() {
       <h1>Recipe</h1>
       <CraftingGrid />
       <br />
-      <Inventory items={inventory()} />
+      <Inventory items={vanillaItems()} />
       <DraggedItem />
     </div>
   );
