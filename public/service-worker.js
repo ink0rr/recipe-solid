@@ -1,18 +1,19 @@
 const cacheName = "v1";
 
 self.addEventListener("fetch", (e) => {
+  if (e.request.destination !== "image" && !e.request.url.endsWith(".png")) {
+    return;
+  }
   e.respondWith(
     (async () => {
-      const r = await caches.match(e.request);
-      console.log(`[Service Worker] Fetching resource: ${e.request.url}`);
-      if (r) {
-        return r;
+      const match = await caches.match(e.request);
+      if (match) {
+        return match;
       }
-      const response = await fetch(e.request);
+      const res = await fetch(e.request);
       const cache = await caches.open(cacheName);
-      console.log(`[Service Worker] Caching new resource: ${e.request.url}`);
-      cache.put(e.request, response.clone());
-      return response;
+      cache.put(e.request, res.clone());
+      return res;
     })()
   );
 });
