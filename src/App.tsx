@@ -16,7 +16,7 @@ function App() {
       <h1>Recipe</h1>
       <CraftingGrid />
       <br />
-      <Inventory items={inventory} />
+      <Inventory items={inventory()} />
       <DraggedItem />
     </div>
   );

@@ -3,10 +3,10 @@ import type { Item } from "../types/Item";
 import ItemSlot from "./ItemSlot";
 
 interface InventoryProps {
-  items: Resource<Item[]>;
+  items: Item[];
 }
 
-export default function Inventory({ items }: InventoryProps) {
+export default function Inventory(props: InventoryProps) {
   return (
     <div
       style={{
@@ -16,7 +16,7 @@ export default function Inventory({ items }: InventoryProps) {
         "user-select": "none",
       }}
     >
-      <For each={items()}>{(item) => <ItemSlot item={item} />}</For>
+      <For each={props.items}>{(item) => <ItemSlot item={item} />}</For>
     </div>
   );
 }

@@ -6,12 +6,13 @@ import style from "./ItemSlot.module.css";
 
 interface ItemSlotProps {
   item: Item | null;
-  crafting?: boolean;
+  setItem?: (item: Item | null) => void;
 }
 
-export default function ItemSlot({ item, crafting }: ItemSlotProps) {
-  const [currentItem, setCurrentItem] = createSignal(item);
-
+/**
+ * If `setItem` is provided, the item slot will be a crafting grid slot.
+ */
+export default function ItemSlot(props: ItemSlotProps) {
   const EmptySlot = (
     <div
       style={{
@@ -20,12 +21,13 @@ export default function ItemSlot({ item, crafting }: ItemSlotProps) {
       onContextMenu={(e) => e.preventDefault()}
       onMouseEnter={(e) => {
         if (e.buttons && draggedItem() && !isPicking()) {
-          setCurrentItem(draggedItem());
+          props.setItem?.(draggedItem());
         }
       }}
       onMouseDown={() => {
+        if (!props.setItem) return;
         setIsPicking(false);
-        setCurrentItem(draggedItem());
+        props.setItem(draggedItem());
       }}
     >
       <span class={style.grid}>
@@ -39,7 +41,7 @@ export default function ItemSlot({ item, crafting }: ItemSlotProps) {
     </div>
   );
   return (
-    <Show when={currentItem()} fallback={EmptySlot}>
+    <Show when={props.item} fallback={EmptySlot}>
       <div
         style={{
           display: "inline",
@@ -47,25 +49,25 @@ export default function ItemSlot({ item, crafting }: ItemSlotProps) {
         onContextMenu={(e) => e.preventDefault()}
         onMouseDown={(e) => {
           setIsPicking(true);
-          if (!crafting) {
-            setDraggedItem(draggedItem() ? null : currentItem());
+          if (!props.setItem) {
+            setDraggedItem(draggedItem() ? null : props.item);
             return;
           }
 
           if (draggedItem()) {
             const temp = draggedItem();
-            setDraggedItem(currentItem());
-            setCurrentItem(temp);
+            setDraggedItem(props.item);
+            props.setItem(temp);
             return;
           }
 
           if (e.shiftKey) setIsPicking(false);
-          else setDraggedItem(currentItem());
+          else setDraggedItem(props.item);
 
-          setCurrentItem(null);
+          props.setItem(null);
         }}
         onMouseUp={(e) => {
-          if (crafting && !isPicking()) {
+          if (props.setItem && !isPicking()) {
             setDraggedItem(null);
           }
         }}
@@ -79,10 +81,8 @@ export default function ItemSlot({ item, crafting }: ItemSlotProps) {
           >
             <img
               class={style.img}
-              src={`https://raw.githubusercontent.com/ink0rr/bedrock-items/main/dist/textures/${
-                currentItem()?._id
-              }.png`}
-              alt={currentItem()?.readable}
+              src={`https://raw.githubusercontent.com/ink0rr/bedrock-items/main/dist/textures/${props.item?._id}.png`}
+              alt={props.item?.readable}
               width="32px"
               height="32px"
             />
