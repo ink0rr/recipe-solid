@@ -1,8 +1,8 @@
-import { createSignal, Show } from "solid-js";
+import { Show } from "solid-js";
 import { draggedItem, setDraggedItem } from "../stores/draggedItem";
 import { isPicking, setIsPicking } from "../stores/isPicking";
+
 import type { Item } from "../types/Item";
-import style from "./ItemSlot.module.css";
 
 interface ItemSlotProps {
   item: Item | null;
@@ -15,9 +15,7 @@ interface ItemSlotProps {
 export default function ItemSlot(props: ItemSlotProps) {
   const EmptySlot = (
     <div
-      style={{
-        display: "inline",
-      }}
+      class="inline"
       onContextMenu={(e) => e.preventDefault()}
       onMouseEnter={(e) => {
         if (e.buttons && draggedItem() && !isPicking()) {
@@ -30,22 +28,15 @@ export default function ItemSlot(props: ItemSlotProps) {
         props.setItem(draggedItem());
       }}
     >
-      <span class={style.grid}>
-        <div
-          style={{
-            height: "32px",
-            width: "32px",
-          }}
-        />
+      <span class="mc-itemslot">
+        <div class="w-8 h-8"></div>
       </span>
     </div>
   );
   return (
     <Show when={props.item} fallback={EmptySlot}>
       <div
-        style={{
-          display: "inline",
-        }}
+        class="inline"
         onContextMenu={(e) => e.preventDefault()}
         onMouseDown={(e) => {
           setIsPicking(true);
@@ -72,15 +63,11 @@ export default function ItemSlot(props: ItemSlotProps) {
           }
         }}
       >
-        <span class={style.grid}>
-          <div
-            style={{
-              height: "32px",
-              width: "32px",
-            }}
-          >
+        <span class="mc-itemslot">
+          <div class="w-8 h-8">
             <img
-              class={style.img}
+              class="w-8 h-8 pointer-events-none"
+              style={{ "image-rendering": "pixelated" }}
               src={`https://raw.githubusercontent.com/ink0rr/bedrock-items/main/dist/textures/${props.item?._id}.png`}
               alt={props.item?.readable}
               width="32px"

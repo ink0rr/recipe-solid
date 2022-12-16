@@ -6,6 +6,8 @@ import Inventory from "./components/Inventory";
 import { setMousePosition } from "./stores/mousePosition";
 import { vanillaItems } from "./stores/vanillaItems";
 
+import "./index.css";
+
 function App() {
   window.addEventListener("mousemove", (event) => {
     setMousePosition({ x: event.clientX, y: event.clientY });
