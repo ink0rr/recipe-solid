@@ -1,12 +1,11 @@
 import { Show } from "solid-js";
+import { getItemTexture } from "../core/item";
 import { draggedItem, setDraggedItem } from "../stores/draggedItem";
 import { isPicking, setIsPicking } from "../stores/isPicking";
 
-import type { Item } from "../types/Item";
-
 interface ItemSlotProps {
-  item: Item | null;
-  setItem?: (item: Item | null) => void;
+  item: string | null;
+  setItem?: (item: string | null) => void;
 }
 
 /**
@@ -33,6 +32,7 @@ export default function ItemSlot(props: ItemSlotProps) {
       </span>
     </div>
   );
+
   return (
     <Show when={props.item} fallback={EmptySlot}>
       <div
@@ -68,8 +68,8 @@ export default function ItemSlot(props: ItemSlotProps) {
             <img
               class="w-8 h-8 pointer-events-none"
               style={{ "image-rendering": "pixelated" }}
-              src={`https://raw.githubusercontent.com/ink0rr/bedrock-items/main/dist/textures/${props.item?._id}.png`}
-              alt={props.item?.readable}
+              src={getItemTexture(props.item)}
+              alt={props.item ?? "unknown"}
               width="32px"
               height="32px"
             />

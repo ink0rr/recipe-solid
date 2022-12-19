@@ -1,4 +1,5 @@
 import { Show } from "solid-js";
+import { getItemTexture } from "../core/item";
 import { draggedItem } from "../stores/draggedItem";
 import { mousePosition } from "../stores/mousePosition";
 
@@ -17,8 +18,8 @@ export default function DraggedItem() {
         <img
           class="w-11 h-11"
           style={{ "image-rendering": "pixelated" }}
-          src={`https://raw.githubusercontent.com/ink0rr/bedrock-items/main/dist/textures/${draggedItem()?._id}.png`}
-          alt={draggedItem()?.readable}
+          src={getItemTexture(draggedItem())}
+          alt={draggedItem() ?? "unknown"}
           width="42px"
           height="42px"
         />

@@ -3,6 +3,7 @@ import { render } from "solid-js/web";
 import CraftingGrid from "./components/CraftingGrid";
 import DraggedItem from "./components/DraggedItem";
 import Inventory from "./components/Inventory";
+import { customItems } from "./stores/customItems";
 import { setMousePosition } from "./stores/mousePosition";
 import { vanillaItems } from "./stores/vanillaItems";
 
@@ -14,11 +15,16 @@ function App() {
   });
 
   return (
-    <div>
-      <h1>Recipe</h1>
+    <div class="container m-auto pt-5 flex flex-row flex-wrap-reverse justify-center gap-6">
+      <div>
+        <Inventory
+          items={[
+            ...Object.keys(customItems()),
+            ...Object.keys(vanillaItems()),
+          ]}
+        />
+      </div>
       <CraftingGrid />
-      <br />
-      <Inventory items={vanillaItems()} />
       <DraggedItem />
     </div>
   );
