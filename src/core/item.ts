@@ -1,14 +1,20 @@
 import { customItems } from "../stores/customItems";
 import { vanillaItems } from "../stores/vanillaItems";
-import type { Item } from "../types/Item";
+import type { RecipeJsonItem } from "../types/RecipeJson";
 
-export function getItem(id: string | null): Item | null {
-  if (!id) return null;
-  return vanillaItems()[id] ?? customItems()[id] ?? null;
+export function getItem(id: string | null): RecipeJsonItem | undefined {
+  id ??= "";
+  const item = vanillaItems()[id] ?? customItems()[id];
+  if (!item) return undefined;
+  return {
+    item: item.identifier,
+    data: item.data,
+    count: 1,
+  };
 }
 
 export function getItemTexture(id: string | null): string {
-  if (!id) return "/missing.png";
+  id ??= "";
   return vanillaItems()[id]
     ? `https://ink0rr-api.deno.dev/items/${id}/texture`
     : customItems()[id]?.texture ?? "/missing.png";

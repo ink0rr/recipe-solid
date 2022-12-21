@@ -1,4 +1,5 @@
-import { createSignal, For } from "solid-js";
+import { createMemo, createSignal, For } from "solid-js";
+import { createRecipe } from "../core/recipe/createRecipe";
 import ItemSlot from "./ItemSlot";
 
 export default function CraftingGrid() {
@@ -13,6 +14,13 @@ export default function CraftingGrid() {
     });
   };
   const [output, setOutput] = createSignal<string | null>(null);
+
+  const result = createMemo(() =>
+    createRecipe("shaped", {
+      input: items(),
+      output: output(),
+    })
+  );
   return (
     <div class="flex flex-wrap flex-col">
       <div class="flex gap-12">
@@ -25,6 +33,11 @@ export default function CraftingGrid() {
         </div>
         <ItemSlot item={output()} setItem={setOutput} />
       </div>
+      <pre>
+        <code>
+          {JSON.stringify(result(), null, 2)}
+        </code>
+      </pre>
     </div>
   );
 }
