@@ -22,9 +22,9 @@ export default function CraftingGrid() {
     })
   );
   return (
-    <div class="flex flex-wrap flex-col">
-      <div class="flex gap-12">
-        <div class="select-none w-[108px]">
+    <div class="crafting-grid-parent">
+      <div class="recipe-grid">
+        <div class="crafting-grid">
           <For each={items()}>
             {(item, index) => (
               <ItemSlot item={item} setItem={setItem(index())} />
@@ -33,11 +33,13 @@ export default function CraftingGrid() {
         </div>
         <ItemSlot item={output()} setItem={setOutput} />
       </div>
-      <pre>
-        <code>
-          {JSON.stringify(result(), null, 2)}
-        </code>
-      </pre>
+      <div class="tab scrollable">
+        <pre>
+          <code>
+            {JSON.stringify(result(), null, 2)}
+          </code>
+        </pre>
+      </div>
     </div>
   );
 }

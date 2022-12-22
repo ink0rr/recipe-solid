@@ -1,0 +1,205 @@
+:root{
+  --white: white;
+  --black: black;
+  --lightGray: #bababa;
+  --lightGray200: #AAAAAA;
+  --graySlate100: #555555;
+  --graySlate400: #242424;
+  --greenSlate100: lightgreen;
+  --greenSlate200: #00AA00;
+  --greenSlate300: #009400;
+  --greenSlate400: #00b800;
+  --greenSlate250: #00b800;
+  --greenSlate600: #006e00;
+  --greenSlate700: #005c00;
+}
+
+.button-primary{
+  background-color: #bababa;
+  border-top: 3px solid white;
+  border-left: 3px solid white;
+  border-right: 3px solid #555555;
+  border-bottom: 3px solid #555555;
+  outline: solid 3px black;
+  padding: 10px;
+  text-align: center;
+}
+
+.button-primary:hover{
+  background-color: #00AA00;
+  border-top: 3px solid lightgreen;
+  border-left: 3px solid lightgreen;
+  border-right: 3px solid #009400;
+  border-bottom: 3px solid #009400;
+  outline: solid 3px white;
+}
+
+.button-secondary{
+  background-color: #555555;
+  border-top: 3px solid #bababa;
+  border-left: 3px solid #bababa;
+  border-right: 3px solid #242424;
+  border-bottom: 3px solid #242424;
+  outline: solid 3px black;
+  padding: 10px;
+  text-align: center;
+}
+
+.button-secondary:hover{
+  background-color: #006e00;
+  border-top: 3px solid #00b800;
+  border-left: 3px solid #00b800;
+  border-right: 3px solid #005c00;
+  border-bottom: 3px solid #005c00;
+  outline: solid 3px white;
+}
+
+.item{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  vertical-align: middle;
+  align-items: center;
+  text-align: center !important;
+  vertical-align: middle;
+  background-color: #858585;
+  border-top: 2px solid #242424;
+  border-left: 2px solid #242424;
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
+}
+
+.item:hover{
+  background-color: #6AAC43;
+  border: 2px solid white;
+}
+
+.item-tooltip{
+  background-color: rgba(0, 0, 0, 0.6);
+  box-shadow:  
+  0px 0px 0 3px #bababa,
+  1.5px 0px 0 3px #555555,
+  0px 1.5px 0 3px #555555,
+  -1.5px 0px 0 3px white,
+  0px -1.5px 0 3px white,
+  -1.5px 0px 0 4px black,
+  0px -1.5px 0 4px black,
+  1.5px 0px 0 4px black,
+  0px 1.5px 0 4px black;
+  box-sizing: border-box;
+  visibility: hidden;
+  position: absolute;
+  transform: translate(80%, 80%);
+  z-index: 1;
+}
+
+.item:hover .item-tooltip{
+  visibility: visible;
+}
+
+.item--light{
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  background-color: #bababa;
+  border-top: 3px solid white;
+  border-left: 3px solid white;
+  border-right: 3px solid #555555;
+  border-bottom: 3px solid #555555;
+  outline: solid 3px black;
+  font-size: 1rem;
+  padding: 1em 2em 1em 2em;
+  box-sizing: border-box;
+}
+
+.item--light:hover{
+  background-color: #8787ff;
+  border-top: 3px solid white;
+  border-left: 3px solid white;
+  border-right: 3px solid #555555;
+  border-bottom: 3px solid #555555;
+  outline: solid 3px white;
+}
+
+.scrollable{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  /* background-color: aqua; */
+  overflow-y: scroll;
+}
+
+.scrollable::-webkit-scrollbar {
+  width: 12px;
+  background-color: #000000;
+}
+
+.scrollable::-webkit-scrollbar-track {
+  background-color: #969696;
+  border-top: 3px solid #242424;
+  border-right: 3px solid white;
+  border-bottom: 5px solid white;
+  border-left: 3px solid #242424;
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+  border-top: 3px solid white;
+  border-right: 3px solid #242424;
+  border-bottom: 3px solid #242424;
+  border-left: 3px solid white;
+  background-color: #dfdfdf;
+}
+
+.tab{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-shadow:  
+    0px 0px 0 12px #bababa,
+    6px 0px 0 12px #555555,
+    0px 6px 0 12px #555555,
+    -6px 0px 0 12px white,
+    0px -6px 0 12px white,
+    -6px 0px 0 16px black,
+    0px -6px 0 16px black,
+    6px 0px 0 16px black,
+    0px 6px 0 16px black;
+  box-sizing: border-box;
+}
+
+.tab--header{
+  width: 100%;
+  height: 7%;
+  background-color: #bababa;
+  padding: 0.4rem;
+  box-sizing: border-box;
+  display: flex;
+}
+
+.tab--content{
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 93%;
+  background-color: #bababa;
+}
+
+.input{
+  width: 100%;
+  background-color: #8b8b8b;
+  border-style: none;
+  border-top: 2px solid #454545;
+  border-bottom: 2px solid #bababa;
+  outline: 2px solid #000000;
+}
+
+.input:hover{
+  outline: 2px solid #FFF;
+}

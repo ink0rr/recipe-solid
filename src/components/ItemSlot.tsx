@@ -14,7 +14,6 @@ interface ItemSlotProps {
 export default function ItemSlot(props: ItemSlotProps) {
   const EmptySlot = (
     <div
-      class="inline"
       onContextMenu={(e) => e.preventDefault()}
       onMouseEnter={(e) => {
         if (e.buttons && draggedItem() && !isPicking()) {
@@ -27,8 +26,7 @@ export default function ItemSlot(props: ItemSlotProps) {
         props.setItem(draggedItem());
       }}
     >
-      <span class="mc-itemslot">
-        <div class="w-8 h-8"></div>
+      <span class="mc-itemslot item">
       </span>
     </div>
   );
@@ -36,7 +34,6 @@ export default function ItemSlot(props: ItemSlotProps) {
   return (
     <Show when={props.item} fallback={EmptySlot}>
       <div
-        class="inline"
         onContextMenu={(e) => e.preventDefault()}
         onMouseDown={(e) => {
           setIsPicking(true);
@@ -63,10 +60,10 @@ export default function ItemSlot(props: ItemSlotProps) {
           }
         }}
       >
-        <span class="mc-itemslot">
-          <div class="w-8 h-8">
+        <span>
+          <div class="mc-itemslot item">
             <img
-              class="w-8 h-8 pointer-events-none"
+              class="pointer-events-none"
               style={{ "image-rendering": "pixelated" }}
               src={getItemTexture(props.item)}
               alt={props.item ?? "unknown"}
